@@ -9,7 +9,7 @@
 //
 // -----------------------------------------------------------------
 // setup:
-//   LEDs are connected to GPIO 22 and 23.
+//   LEDs are connected to GPIO 22 and 23 and GPIO 2 (builtin).
 //   Button is connected to GPIO 5 and GND.
 //
 #include <JC_Button.h> // https://github.com/JChristensen/JC_Button
@@ -17,20 +17,29 @@
 
 JLed leds1[] = {
     JLed(22).FadeOn(500).Repeat(10),
-    JLed(23).Off(),
+    JLed(21).Off(),
+    JLed(2).Off(),
 };
 
 JLed leds2[] = {
-    JLed(22).Off(1),
-    JLed(23).Blink(500, 500).Repeat(10),
+    JLed(22).Off(),
+    JLed(21).Blink(500, 500).Repeat(10),
+    JLed(2).Off(),
 };
 
 JLed leds3[] = {
-    JLed(22).FadeOn(500).DelayAfter(500).Repeat(10),
-    JLed(23).DelayBefore(500).FadeOn(500).DelayAfter(500).Repeat(10),
+    JLed(22).Off(),
+    JLed(21).Off(),
+    JLed(2).Breathe(1000).Repeat(10),
 };
 
-auto seq = JLedSequence(JLedSequence::eMode::PARALLEL, leds3);
+JLed leds4[] = {
+    JLed(22).FadeOn(500).DelayAfter(1000).Repeat(10),
+    JLed(21).DelayBefore(500).FadeOn(500).DelayAfter(1000).Repeat(10),
+    JLed(2).DelayBefore(1000).FadeOn(500).DelayAfter(1000).Repeat(10),
+};
+
+auto seq = JLedSequence(JLedSequence::eMode::PARALLEL, leds4);
 auto button = Button(5, 25, true /*pull-up*/, true /*inverted*/);
 
 void setup()
@@ -67,7 +76,12 @@ void loop()
             seq = JLedSequence(JLedSequence::eMode::PARALLEL, leds3);
             seq.Reset();
             break;
+        case 3:
+            Serial.println("FX4");
+            seq = JLedSequence(JLedSequence::eMode::PARALLEL, leds4);
+            seq.Reset();
+            break;
         }
-        count = (count + 1) % 3;
+        count = (count + 1) % 4;
     }
 }

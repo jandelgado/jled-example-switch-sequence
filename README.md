@@ -5,8 +5,10 @@
 This [JLed](https://github.com/jandelgado/jled) demo shows how to switch
 between different `JLedSequence` objects using a push button.
 
-Demo is set up for an ESP32 with LEDs connected to GPIO's 22 and 23.
-The button is connected to GPIO 5 and GND.
+Demo is set up for an ESP32 with LEDs connected to GPIO's 22, 23 and the 
+bultin LED on GPIO 2. The button is connected to GPIO 5 and GND.
+
+![breadboard](.images/breadboard.png)
 
 ## Build
 
