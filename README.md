@@ -1,5 +1,7 @@
 # JLed dynamic sequence demo
 
+[![build firmware](https://github.com/jandelgado/jled-example-switch-sequence/actions/workflows/build.yml/badge.svg)](https://github.com/jandelgado/jled-example-switch-sequence/actions/workflows/build.yml)
+
 This [JLed](https://github.com/jandelgado/jled) demo shows how to switch
 between different `JLedSequence` objects using a push button.
 
